@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  springbootapp:
+    image: tranlacphong/springbootapp:1.0
+    network_mode: bridge
+    container_name: springbootapp
+    expose:
+      - 8080
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+    links:
+      - postgres
+
+  postgres:
+    image: "postgres:11.4"
+    network_mode: bridge
+    container_name: postgres
+    restart: always
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: java_to_dev_app_db
+      POSTGRES_PASSWORD: nE5kMc7JCGNqwDQM
